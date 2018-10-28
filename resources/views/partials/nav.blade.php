@@ -7,11 +7,11 @@
 					</div>
 					<div class="col-md-12 col-md-offset-0 text-center menu-1">
 						<ul>
-							<li class="active"><a href="index.html">Home</a></li>
-							<li><a href="sermons.html">Authors</a></li>
-							<li><a href="events.html">Registration</a></li>
-							<li><a href="about.html">Login</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li class={{ Request::is('/') ? 'active' : '' }} ><a href="{{ route('index') }}">Home</a></li>
+							<li class={{ Request::is('authors') ? 'active' : '' }} ><a href="{{ route('authors') }}">Authors</a></li>
+							<li ><a target="_new" href="{{ route('register') }}">Registration</a></li>
+							<li ><a target="_new" href="{{ route('login') }}">Login</a></li>
+							<li class={{ Request::is('submit-contact') ? 'active' : '' }}><a href="{{ route('contact') }}">Contact</a></li>
 						</ul>
 					</div>
 				</div>

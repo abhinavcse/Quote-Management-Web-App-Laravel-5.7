@@ -1,5 +1,4 @@
 @extends('layouts.index')
-
 @section('content')
 <div class="container-wrap">
 		<aside id="fh5co-hero">

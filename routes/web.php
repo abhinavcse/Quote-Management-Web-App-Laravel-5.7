@@ -11,22 +11,21 @@
 |
 */
 
-Route::get('/Author',function(){
-    
-    return View('Author');
-    
-});
+Route::get('/','IndexController@index')->name('index');
+Route::get('/authors','IndexController@getAuthors')->name('authors');
 
-Route::get('/', function () {
-    return view('index');
-});
-
-Route::get('/about', function () {
-    return view('about');
-});
-
+Route::get('/submit-contact','IndexController@getContact')->name('contact');
+Route::post('/submit-contact','IndexController@submitContact')->name('contact_submit');
 
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/post-quote', 'HomeController@postQuote')->name('post_quote');
+Route::post('/post-quote', 'HomeController@postQuoteSubmit')->name('quote_submit');
+
+Route::get('/update-quote', 'HomeController@updateQuote')->name('update_quote');
+Route::get('/query', 'HomeController@insertQuery')->name('query');
+
+
+//Only For Test to Get Data from Database
+Route::get('/test','IndexController@test');
