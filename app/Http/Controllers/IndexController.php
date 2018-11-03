@@ -8,6 +8,7 @@ use App\Quote;
 class IndexController extends Controller
 {
     //
+
     public function test()
     {
         return Quote::orderBy('created_at', 'DESC')->get();;
@@ -15,7 +16,8 @@ class IndexController extends Controller
    
     public function index()
     {
-        return view('index');
+        $data=Quote::All()->shuffle()->take(30);
+        return view('index',[ 'passdata' => $data,  ]);
     }
      public function getAuthors()
     {
@@ -40,3 +42,4 @@ class IndexController extends Controller
     }
     
 }
+//$quote = Quote::All()->take(10)->shuffle();

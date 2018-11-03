@@ -135,31 +135,19 @@
 					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
 				</div>
 			</div>
+            
 			<div class="row">
+                @foreach($passdata as $getData )
 				<div class="col-md-4 animate-box">
 					<div class="events-entry">
-						<span class="date">March 10, 2017</span>
-						<h3><a href="#">Quote 1</a></h3>
-						<p>Author Name</p>
+						<span class="date"> {{ $getData->created_at }}</span>
+						<h5>{{ $getData->quote  }}</h5>
+                        <p>{{ $getData->user->name  }} </p>
+						<p>Reference:- {{ $getData->author_name  }} </p>
 						<a href="#">Read More <i class="icon-arrow-right3"></i></a>
 					</div>
 				</div>
-				<div class="col-md-4 animate-box">
-					<div class="events-entry">
-						<span class="date">March 10, 2017</span>
-						<h3><a href="#">Quote 2</a></h3>
-						<p>Author Name</p>
-						<a href="#">Read More <i class="icon-arrow-right3"></i></a>
-					</div>
-				</div>
-				<div class="col-md-4 animate-box">
-					<div class="events-entry">
-						<span class="date">March 10, 2017</span>
-						<h3><a href="#">Quote 3</a></h3>
-						<p>Author Name</p>
-						<a href="#">Read More <i class="icon-arrow-right3"></i></a>
-					</div>
-				</div>
+                @endforeach
 			</div>
 		</div>
 		<div id="fh5co-news" class="fh5co-light-grey">
