@@ -136,19 +136,30 @@
 				</div>
 			</div>
             
-			<div class="row">
+			     <?php   $i=1;    ?>
                 @foreach($passdata as $getData )
+                
+                @if($i%3==0)
+                <div class="row">
+                @endif
+                
 				<div class="col-md-4 animate-box">
 					<div class="events-entry">
 						<span class="date"> {{ $getData->created_at }}</span>
 						<h5>{{ $getData->quote  }}</h5>
                         <p>{{ $getData->user->name  }} </p>
 						<p>Reference:- {{ $getData->author_name  }} </p>
-						<a href="#">Read More <i class="icon-arrow-right3"></i></a>
+						<a href="#">Comment<i class="icon-arrow-right3"></i></a>
 					</div>
 				</div>
+                
+                @if($i%3==0)
+                </div>
+                @endif
+                
+                <?php    $i++;   ?>
                 @endforeach
-			</div>
+			
 		</div>
 		<div id="fh5co-news" class="fh5co-light-grey">
 			<div class="row animate-box">

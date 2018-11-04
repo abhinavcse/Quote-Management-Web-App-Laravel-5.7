@@ -22,9 +22,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/post-quote', 'HomeController@postQuote')->name('post_quote');
 Route::post('/post-quote', 'HomeController@postQuoteSubmit')->name('quote_submit');
+Route::get('/quote-delete/{id}', 'HomeController@quoteDelete')->name('quotedelete');
 
 Route::get('/update-quote', 'HomeController@updateQuote')->name('update_quote');
 Route::get('/query', 'HomeController@insertQuery')->name('query');
+Route::post('/query','HomeController@sendMail')->name('sendmail');
 
 
 

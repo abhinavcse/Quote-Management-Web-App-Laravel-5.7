@@ -11,6 +11,15 @@
                   <p class="card-category">You can update or delete</p>
                 </div>
                 <div class="card-body">
+                <div class="row">
+                @if(Session::has('success'))
+                    <div class="col-md-12">
+                      <div class="card">
+                      <div class="card-body">
+                      {{ Session::get('success')  }}
+                      </div>
+                      </div>
+                @endif
                   <div class="table-responsive">
                     <table class="table">
                       <thead class=" text-primary">
@@ -29,25 +38,41 @@
                         <th>
                           Quote
                         </th>
+                        <th>
+                          Created At
+                        </th>
+                        <th>
+                          Update
+                        </th>
+                        <th>
+                          Delete
+                        </th>
                       </thead>
                       <tbody>
+                      <?php   $i=1;  ?>
+                      @foreach($quotes as $getQuotes)
                         <tr>
                           <td>
-                            1
+                            {{ $i }}
                           </td>
                           <td>
-                            Dakota Rice
+                            {{ $getQuotes->title }}
                           </td>
                           <td>
-                            Niger
+                            {{ $getQuotes->category }}
                           </td>
                           <td>
-                            Oud-Turnhout
+                            {{ $getQuotes->author_name }}
                           </td>
-                          <td class="text-primary">
-                            $36,738
+                          <td >
+                            {{ $getQuotes->quote }}
                           </td>
+                          <td>{{ $getQuotes->created_at }}</td>
+                          <td><a href="">Click </a></td>
+                          <td><a href="{{ route('quotedelete', ['id' => $getQuotes->id ]) }}">Click </a></td>
                         </tr>
+                      <?php  $i++;   ?>  
+                      @endforeach  
                       </tbody>
                     </table>
                   </div>

@@ -5,13 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Contact;
 use App\Quote;
+use Mail;
 class IndexController extends Controller
 {
     //
 
     public function test()
     {
-        return Quote::orderBy('created_at', 'DESC')->get();;
+      $data = array('name'=>"mdkflmkldfmklfmdlk ");
+      Mail::send('mail', $data, function($message) {
+         $message->to('abhinav.cse12@gmail.com', 'Tutorials Point')->subject
+            ('Laravel HTML Testing Mail');
+         $message->from('abhinavsbbgi@gmail.com','Abhinav');
+      });
+      echo "HTML Email Sent. Check your inbox.";
+
     }
    
     public function index()

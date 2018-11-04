@@ -7,14 +7,10 @@
             <div class="col-md-6">
               <div class="card card-chart">
                 <div class="card-body">
-                  <h4 class="card-title">Number of Quotes</h4>
-                  <p class="card-category">
-                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+                  <h4 class="card-title"> Total Number of Quotes  </h4>
                 </div>
                 <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">access_time</i> updated 4 minutes ago
-                  </div>
+                  <h3>{{ $AuthQuotesCount }}</h3>
                 </div>
               </div>
             </div>
@@ -49,14 +45,10 @@
             <div class="col-md-6">
               <div class="card card-chart">
                 <div class="card-body">
-                  <h4 class="card-title">Total Number of Authors</h4>
-                  <p class="card-category">
-                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+                  <h4 class="card-title"> Total Number of Authors </h4>
                 </div>
                 <div class="card-footer">
-                  <div class="stats">
-                    <i class="material-icons">access_time</i> updated 4 minutes ago
-                  </div>
+                  <h3>{{ $TotalAuthors }}</h3>
                 </div>
               </div>
             </div>
