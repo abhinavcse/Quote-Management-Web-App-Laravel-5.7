@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
@@ -17,6 +16,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('CheckUserType');
     }
     /**
      * Show the application dashboard.
@@ -65,14 +65,39 @@ class HomeController extends Controller
       Quote::create([ 'title' =>$request['title'], 'category' =>$request['category'], 'author_name' =>$request['author'], 
       'quote' =>$request['quote'], 'user_id' =>Auth::user()->id , 
       ]);  
-      return redirect()->route('post_quote')->with( ['success' => 'Quote Submitted Successfully.', ] );
-         
-        
+      return redirect()->route('post_quote')->with( ['success' => 'Quote Submitted Successfully.', ] );       
     }
     public function quoteDelete($id)
     {
         $deleteQuote=Quote::find($id);
         $deleteQuote->delete();
         return redirect()->route('update_quote')->with( ['success' => 'Quote Deleted Successfully.', ] );
+    }
+    public function quoteUpdate($id)
+    {
+        return View('quote_update',['data' =>Quote::find($id)->first(), ]);
+    }
+    public function postQuoteUpdate(Request $request)
+    {
+      $data=Quote::find($request['id']); 
+      $data->title=$request['title'];$data->category=$request['category'];$data->author_name=$request['author'];
+      $data->quote=$request['quote'];
+      $data->save();
+      return redirect()->route('update_quote')->with( ['success' => 'Quote Updated Successfully.', ] );  
+    }
+    public function uploadAuthorPhoto(Request $request)
+    {
+        $request->validate([
+            'file' => 'max:500',
+                           ]);                  
+        $image=$request->file('file');
+        $input['imagename']=time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('images/authors/');
+        $photoPath="images/authors/".$input['imagename'];
+        $image->move($destinationPath,$input['imagename']);
+        $getUserRow=User::find(Auth::user()->id);
+        $getUserRow->photo=$photoPath;
+        $getUserRow->save();
+        return redirect()->route('post_quote');  
     }
 }

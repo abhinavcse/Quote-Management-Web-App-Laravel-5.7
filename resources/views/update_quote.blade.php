@@ -68,7 +68,7 @@
                             {{ $getQuotes->quote }}
                           </td>
                           <td>{{ $getQuotes->created_at }}</td>
-                          <td><a href="">Click </a></td>
+                          <td><a href="{{ route('quoteupdate', ['id' => $getQuotes->id ]) }}">Click </a></td>
                           <td><a href="{{ route('quotedelete', ['id' => $getQuotes->id ]) }}">Click </a></td>
                         </tr>
                       <?php  $i++;   ?>  

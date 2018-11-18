@@ -1,4 +1,4 @@
-@extends('layouts.home')
+@extends('layouts.home_one')
 @section('content')
 <div class="content">
         <div class="container-fluid">
@@ -15,37 +15,32 @@
           <div class="row">
             <div class="col-md-8">
               <div class="card">
-              
                 <div class="card-header card-header-primary">
                   <h4 class="card-title">Post Quote</h4>
                   <p class="card-category">What is in your mind?</p>
-                   @if ($errors->any())
-                        @foreach ($errors->all() as $error)
-                        {{$error}}
-                        @endforeach
-                        @endif
                 </div>
                 <div class="card-body">
-                  <form method="POST" action="{{ route('quote_submit') }}" >
+                  <form method="POST" action="{{ route('quote_update_submit') }}" >
                   @csrf
+                  <input type="hidden" name="id" value="{{ $data->id }}">
                     <div class="row">
                       <div class="col-md-9">
                         <div class="form-group">
                           <label class="bmd-label-floating">Quote Title</label>
-                          <input type="text" class="form-control" name="title">
+                          <input type="text" class="form-control" name="title" value="{{ $data->title }}">
                         </div>
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Author Name</label>
-                          <input type="text" class="form-control" name="author">
+                          <input type="text" class="form-control" name="author" value="{{ $data->author_name }}">
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Category</label>
+                          <label class="bmd-label-floating">Category ( {{ $data->category }} )</label>
                           <select name="category" class="form-control">
                           <option value="">Select</option><option value="Life">Life</option>
                           <option value="Love">Love</option><option value="Education">Education</option>
@@ -62,12 +57,12 @@
                           <label>Write Your Quote</label>
                           <div class="form-group">
                             <label class="bmd-label-floating">Quote</label>
-                            <textarea class="form-control" name="quote" rows="5"></textarea>
+                            <textarea class="form-control" name="quote" rows="5" >{{ $data->quote }}</textarea>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-primary pull-right">Post Quote</button>
+                    <button type="submit" class="btn btn-primary pull-right">Update Quote</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
@@ -77,7 +72,7 @@
               <div class="card card-profile">
                 <div class="card-avatar">
                   <a href="#pablo">
-                    <img class="img" src="{{ Auth::user()->photo }}" />
+                    <img class="img" src="../assets/img/faces/marc.jpg" />
                   </a>
                 </div>
                 <div class="card-body">
@@ -86,18 +81,7 @@
                   <p class="card-description">
                     Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
                   </p>
-                  <div class="row">
-                      <div class="col-md-12">
-                      
-                  <form method="post" action="{{ route('upload_author_photo') }}" enctype="multipart/form-data">
-                        @csrf
-                                  <div class="form-group">
-                                    <input type="file" name="file" class="form-control" required=""   />
-                                  </div>
-                                  <button type="submit" class="btn btn-primary pull-right">Upload</button>
-                  </form>   
-                        </div>
-                   </div>          
+                  <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
                 </div>
               </div>
             </div>

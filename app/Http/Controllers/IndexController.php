@@ -1,31 +1,37 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Contact;
 use App\Quote;
 use Mail;
+use App\Query;
+use Illuminate\Support\Facades\Cache;
+use App\User;
 class IndexController extends Controller
 {
     //
-
-    public function test()
+    public function createCache()
     {
-      $data = array('name'=>"mdkflmkldfmklfmdlk ");
-      Mail::send('mail', $data, function($message) {
-         $message->to('abhinav.cse12@gmail.com', 'Tutorials Point')->subject
-            ('Laravel HTML Testing Mail');
-         $message->from('abhinavsbbgi@gmail.com','Abhinav');
-      });
-      echo "HTML Email Sent. Check your inbox.";
+        Cache::forever('categories', Contact::all());
+        if (Cache::has('categories')) {
+                //
+                echo"Cache Created Successfully";
+            }
+    }
+    public function fetchCache()
+    {
+        return Cache('categories');
+    }
 
+    public function getQueries()
+    {
+        return cache('query');
     }
    
     public function index()
     {
-        $data=Quote::All()->shuffle()->take(30);
-        return view('index',[ 'passdata' => $data,  ]);
+        $data=Quote::All()->take(3);$users=User::All();
+        return view('index',[ 'passdata' => $data, 'users' => $users  ]);
     }
      public function getAuthors()
     {
